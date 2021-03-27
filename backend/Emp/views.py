@@ -4,6 +4,7 @@ from django.http.response import JsonResponse
 from .models import Employees,Departments
 from .serializers import DepartmentSerializer,EmployeeSerializer
 from django.views.decorators.csrf import csrf_exempt
+from django.core.files.storage import default_storage
 
 @csrf_exempt
 def departmentApi(request,id=0):
@@ -62,7 +63,9 @@ def employeeApi(request,id=0):
 
 @csrf_exempt
 def SaveFile(request):
-    return
+    file=request.FILES['uploadedFile']
+    file_name=default_storage.save(file.name,file)
+    return JsonResponse(file_name,safe=False)
 
 
             
