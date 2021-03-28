@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Emp',
     'corsheaders',
+    'Emp.apps.EmpConfig',
     'rest_framework'
     
 ]
+CORS_ORGIN_ALLOW_ALL=True
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -55,8 +56,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ORGIN_ALLOW_ALL=True
-# CORS_ORGIN_WHITELIST=()
+
+
 
 ROOT_URLCONF = 'backend.urls'
 
@@ -86,8 +87,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'USER': 'hash',
-        'PASSWORD': 'hash',
+       
     }
 }
 
