@@ -33,6 +33,16 @@ export class ShowDepComponent implements OnInit {
 
   }
 
+  deleteClick(item:any){
+    if(confirm("Are you sure")){
+      this.service.deleteDep(item.DepartmentId).subscribe(data=>
+        {
+          alert(data.toString());
+          this.refreshDepList();
+        })
+    }
+  }
+
 
   ngOnInit(): void {
     this.refreshDepList();

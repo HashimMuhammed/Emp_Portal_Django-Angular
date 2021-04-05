@@ -69,6 +69,19 @@ data-backdrop="static" data-keyboard="false"
     <tr *ngFor='let dataI of depList'>
         <td>{{dataI.DepartmentId}}</td>
         <td>{{dataI.DepartmentName}}</td>
+        <td>
+          <button type="button" class="btn btn-primarym-2" 
+data-toggle="modal" data-target="#exampleModal"
+(click)="editClick(dataI)"
+data-backdrop="static" data-keyboard="false"
+>
+    edit
+  </button>
+          <!-- <button type="button" class="btn btn-primary " (click)="editClick(dataI) "data-backdrop="static" data-keyboard="false">Edit</button> -->
+          <button type="button" class="btn btn-primary " (click)="deleteClick(dataI)">Delete</button>
+
+        </td>
+        
 
     </tr>
 </table>
