@@ -30,10 +30,9 @@ def departmentApi(request,id=0):
             return JsonResponse("Updated Successfully",safe=False)
         return JsonResponse("failed",safe=False)
     elif(request.method=='DELETE'):
-        departmentsdata=JSONParser().parse(request)
-        departmentdata=Departments.objects.get(DepartmentId=departmentsdata['DepartmentId'])
+        departmentdata=Departments.objects.get(DepartmentId=id)
         departmentdata.delete()
-        return JsonResponse("Failed Successfully",safe=False)
+        return JsonResponse("Deleted Successfully",safe=False)
 @csrf_exempt   
 def employeeApi(request,id=0):
     if (request.method=='GET'):
