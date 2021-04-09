@@ -13,6 +13,9 @@ export class ShowDepComponent implements OnInit {
   ModalTitle: any;
   ActivateAddDepComp:boolean=false;
   dep:any;
+  DepartmentIdFilter:any;
+  DepartmentNameFilter:any;
+  DepartmentListWithoutFilter:any;
 
   addClick(){
     this.dep={
@@ -51,7 +54,33 @@ export class ShowDepComponent implements OnInit {
 refreshDepList(){
   this.service.getDepList().subscribe(data=>{
     this.depList=data;
+    this.DepartmentListWithoutFilter=data;
   });
+}
+
+
+FilterFn(){
+  var DepartmentIdFilter = this.DepartmentIdFilter;
+  var DepartmentNameFilter = this.DepartmentNameFilter;
+
+  this.depList = this.DepartmentListWithoutFilter.filter(function (el:any){
+      return el.DepartmentId.toString().toLowerCase().includes(
+        DepartmentIdFilter.toString().trim().toLowerCase()
+      )&&
+      el.DepartmentName.toString().toLowerCase().includes(
+        DepartmentNameFilter.toString().trim().toLowerCase()
+      )
+  });
+}
+
+sortResult(prop:any,asc:any){
+  this.depList = this.DepartmentListWithoutFilter.sort(function(a:any,b:any){
+    if(asc){
+        return (a[prop]>b[prop])?1 : ((a[prop]<b[prop]) ?-1 :0);
+    }else{
+      return (b[prop]>a[prop])?1 : ((b[prop]<a[prop]) ?-1 :0);
+    }
+  })
 }
 
 }
